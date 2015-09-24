@@ -19,9 +19,16 @@ def get_top_pitchers(data,year):
             (ret.AB+ret.BB+ret.HBP+ret.SF))/ret.salary)*1000000
     return ret
 
-def build_positions(series, position):
+def build_positions(series, position,ab=100,games=50):
     players = []
-    for x in range(20):
-        if series.index[x][position] > 50:
+    for x in range(ab):
+        if series.index[x][position] > games:
             players.append(series.index[x][0])
     return players
+
+def get_player_names(master_data, team):
+    count  = 0
+    for player in master_data.playerID.values:
+        if player in team:
+            print(master_data.nameFirst.values[count], master_data.nameLast.values[count])
+        count += 1
