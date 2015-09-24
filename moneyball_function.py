@@ -18,3 +18,10 @@ def get_top_pitchers(data,year):
     ret = (((ret.H+ret.BB+ret.HBP)/
             (ret.AB+ret.BB+ret.HBP+ret.SF))/ret.salary)*1000000
     return ret
+
+def build_positions(series, position):
+    players = []
+    for x in range(20):
+        if series.index[x][position] > 50:
+            players.append(series.index[x][0])
+    return players
